@@ -1,8 +1,8 @@
-ifndef SDK_DIR
+ifndef CODE_DIR
 include Makefile.in
-export SDK_DIR := $(CURDIR)
+export CODE_DIR := $(CURDIR)
 else
-include $(SDK_DIR)/Makefile.in
+include $(CODE_DIR)/Makefile.in
 endif
 
 CC = $(strip $(CROSS_COMPILE))gcc
