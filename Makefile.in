@@ -1,0 +1,53 @@
+#Selects the version is the release version or debug version
+#Optional parameter: r(release) or d(debug)
+#The difference between the version of r and d is that
+ifndef VER
+export VER = d
+endif
+
+#The cross compile toolchain perfix, including base path
+#For example: mipsel-linux-,powerpc-linux-gun-,aarch64-linux-gnu-
+ifndef CROSS_COMPILE
+export CROSS_COMPILE = aarch64-linux-gnu-
+endif
+
+#Selects the types of CPU
+#Optional parameter: powerpc,mips,x86,arm,arm64
+ifndef ARCH
+export ARCH = arm64
+endif
+
+#Specify cpu info
+#For example: i686,ppc_82xx,ls2f,freescale
+ifndef CPU
+export CPU = arm
+endif
+
+ifndef BOARD
+export BOARD = linux-board
+endif
+
+#Specify the storage path of the object file and executable file generated
+ifndef BLD_DIR
+export BLD_DIR = $(CURDIR)/builds/$(ARCH)
+endif
+ifndef OBJ_BASE_DIR
+export OBJ_BASE_DIR = $(BLD_DIR)/obj.$(BOARD)
+endif
+ifndef LIB_DIR
+export LIB_DIR = $(BLD_DIR)/lib.$(BOARD)
+endif
+ifndef BIN_DIR
+export BIN_DIR = $(BLD_DIR)/bin.$(BOARD)
+endif
+
+#code compile option
+ifndef CFLAGS
+export CFLAGS = -Wall -g
+endif
+
+#Specify make arguments
+ifndef CTC_MAKE
+export CTC_MAKE = make -j$(shell nproc)
+endif
+
